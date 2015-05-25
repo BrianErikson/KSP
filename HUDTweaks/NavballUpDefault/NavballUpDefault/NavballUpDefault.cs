@@ -1,4 +1,5 @@
-﻿
+﻿// LICENSE: Apache License Version 2.0
+// By: BrianErikson
 
 namespace NavballUpDefault
 {
