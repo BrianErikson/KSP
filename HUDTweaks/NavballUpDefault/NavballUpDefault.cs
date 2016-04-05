@@ -2,49 +2,32 @@
 // By: BrianErikson
 
 using KSP.UI.Screens.Flight;
+using KSP;
 
 namespace NavballUpDefault
 {
     [KSPAddon(KSPAddon.Startup.Flight, false)]
     public class NavballUpDefault : UnityEngine.MonoBehaviour
     {
-        MapView mapView;
-        NavBallToggle toggle;
-        bool showing;
 
         void Start()
         {
-            mapView = MapView.fetch;
-            showing = MapView.MapIsEnabled;
-            toggle = NavBallToggle.Instance;
-            
-            if (showing && !toggle.panel.expanded)
-            {
-                toggle.panel.Expand();
-            }
+            UnityEngine.Debug.Log("[NavballUpDefault] Started");
+            MapView.OnEnterMapView += new Callback(OpenNavball);
         }
 
-        void Update()
+        void OpenNavball()
         {
-            bool curShow = MapView.MapIsEnabled;
+            NavBallToggle navToggle = NavBallToggle.Instance;
+            if (navToggle != null && !navToggle.panel.expanded)
+            {
+                navToggle.Invoke("TogglePanel", 0f);
 
-            // Just opened map view
-            if (curShow != showing && showing == false && !toggle.panel.expanded)
-            {
-                toggle.panel.Expand();
-                showing = curShow;
-            } 
-            // Just closed map view
-            else if (curShow != showing && showing == true)
-            {
-                showing = curShow;
+                if (!navToggle.ManeuverModeActive)
+                {
+                    navToggle.OnNavBallToggle();
+                }
             }
-        }
-
-        void OnDestroy()
-        {
-            mapView = null;
-            toggle = null;
         }
     }
 }
