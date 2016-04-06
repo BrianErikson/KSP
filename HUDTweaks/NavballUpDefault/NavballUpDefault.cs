@@ -19,9 +19,12 @@ namespace NavballUpDefault
         void OpenNavball()
         {
             NavBallToggle navToggle = NavBallToggle.Instance;
-            if (navToggle != null && !navToggle.panel.expanded)
+            if (navToggle != null)
             {
-                navToggle.Invoke("TogglePanel", 0f);
+                if (!navToggle.panel.expanded)
+                {
+                    navToggle.Invoke("TogglePanel", 0f);
+                }
 
                 if (!navToggle.ManeuverModeActive)
                 {
