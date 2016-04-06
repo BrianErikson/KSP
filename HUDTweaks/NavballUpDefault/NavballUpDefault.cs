@@ -23,7 +23,7 @@ namespace NavballUpDefault
             {
                 if (!navToggle.panel.expanded)
                 {
-                    navToggle.Invoke("TogglePanel", 0f);
+                    navToggle.Invoke("TogglePanel", 0.3f);
                 }
 
                 if (!navToggle.ManeuverModeActive)
