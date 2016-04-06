@@ -9,21 +9,39 @@ namespace NavballUpDefault
     [KSPAddon(KSPAddon.Startup.Flight, false)]
     public class NavballUpDefault : UnityEngine.MonoBehaviour
     {
+        NavBallToggle navToggle;
+        bool showing = false;
 
         void Start()
         {
             UnityEngine.Debug.Log("[NavballUpDefault] Started");
-            MapView.OnEnterMapView += new Callback(OpenNavball);
+            navToggle = NavBallToggle.Instance;
+        }
+
+        void Update()
+        {
+            bool curShow = MapView.MapIsEnabled;
+
+            // Just opened map view
+            if (curShow != showing && showing == false && !navToggle.panel.expanded)
+            {
+                OpenNavball();
+                showing = curShow;
+            }
+            // Just closed map view
+            else if (curShow != showing && showing == true)
+            {
+                showing = curShow;
+            }
         }
 
         void OpenNavball()
         {
-            NavBallToggle navToggle = NavBallToggle.Instance;
             if (navToggle != null)
             {
                 if (!navToggle.panel.expanded)
                 {
-                    navToggle.Invoke("TogglePanel", 0.3f);
+                    navToggle.Invoke("TogglePanel", 0f);
                 }
 
                 if (!navToggle.ManeuverModeActive)
