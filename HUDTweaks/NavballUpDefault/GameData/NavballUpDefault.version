@@ -1,0 +1,17 @@
+{
+  "NAME":"NavballUpDefault",
+  "URL":"https://github.com/BrianErikson/KSP/raw/master/HUDTweaks/NavballUpDefault/GameData/ManeuverNavballUpDefault.version
+",
+  "DOWNLOAD":"https://github.com/BrianErikson/KSP/releases",
+  "VERSION":{
+    "MAJOR":0,
+    "MINOR":2,
+    "PATCH":3,
+    "BUILD":0
+  },
+  "KSP_VERSION":{
+    "MAJOR":1,
+    "MINOR":1,
+    "PATCH":2
+  }
+}
