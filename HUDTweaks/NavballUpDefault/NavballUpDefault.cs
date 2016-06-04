@@ -22,16 +22,21 @@ namespace NavballUpDefault
         {
             bool curShow = MapView.MapIsEnabled;
 
-            // Just opened map view
-            if (curShow != showing && showing == false && !navToggle.panel.expanded)
+            // Check if we opened/closed map view
+            if (curShow != showing)
             {
-                OpenNavball();
-                showing = curShow;
-            }
-            // Just closed map view
-            else if (curShow != showing && showing == true)
-            {
-                showing = curShow;
+                // Just closed map view
+                if (showing)
+                {
+                    showing = curShow;
+                }
+                // Just opened map view
+                else //showing is false
+                if (!navToggle.panel.expanded)
+                {
+                    OpenNavball();
+                    showing = curShow;
+                }
             }
         }
 
